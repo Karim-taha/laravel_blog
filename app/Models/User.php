@@ -20,6 +20,17 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+
+    /* Start Relations */
+
+        public function post()
+        {
+            return $this->hasMany(Post::class);
+        }
+
+    /* End Relations */
+
+
     /**
      * The attributes that should be hidden for arrays.
      *
