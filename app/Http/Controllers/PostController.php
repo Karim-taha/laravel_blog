@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -26,7 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('blog.create');
     }
 
     /**
@@ -37,7 +38,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required|mimes:jpg,png,jped|max:5048'
+        ]);
+
+        $slug = Str::slug($request->title, '-');
+        $newImageName = uniqid() . '-' . $slug . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+
+
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'slug' => $slug,
+            'image_path' => $newImageName,
+            'user_id' => auth()->user()->id
+        ]);
+
+        return redirect('/blog');
+
+
     }
 
     /**

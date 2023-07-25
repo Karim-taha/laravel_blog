@@ -14,5 +14,10 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    protected $fillable = [
+        'title', 'slug', 'description', 'image_path', 'user_id'
+    ];
+
+
 
 }
