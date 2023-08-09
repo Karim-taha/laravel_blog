@@ -1,6 +1,8 @@
 
 @extends('layouts.app')
 
+@section("title", "Blog")
+
 @section('content')
 
 
@@ -27,6 +29,7 @@
             <span>On: <span class="text-gray-500 italic">{{ date('d-m-y', strtotime($post->updated_at)) }}</span></span>
             <p class="text-l text-gray-700 py-8 leading-6">{{$post->description}}</p>
             <a href="/blog/{{$post->slug}}" class="bg-gray-700 hover:bg-gray-200 text-gray-100 hover:text-gray-700 py-4 px-5 rounded-lg font-bold uppercase text-lg place-self-start">Read More</a>
+            {{-- <a href="/blog/{{$post->slug}}/edit" class="bg-gray-700 hover:bg-gray-200 text-gray-100 hover:text-gray-700 py-4 px-5 rounded-lg font-bold uppercase text-lg place-self-start">Edit</a> --}}
         </div>
     </div>
     @endforeach

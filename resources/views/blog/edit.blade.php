@@ -15,9 +15,9 @@
         <form action="/blog" method="post" enctype="multipart/form-data">
             @csrf
 
-            <input type="text" name="title" class="w-full h-2 text-2xl rounded-lg shadow-lg border-b p-10 mb-5" placeholder="Title" id="">
+            <input type="text" name="title" value="{{ old('title', $post->title) }}" class="w-full h-2 text-2xl rounded-lg shadow-lg border-b p-10 mb-5" placeholder="Title" id="">
 
-            <textarea name="description" class="w-full h-60 text-2xl rounded-lg shadow-lg border-b p-10 mb-5"placeholder="Description"  id="" cols="30" rows="10"></textarea>
+            <textarea name="description" value="{{ old('description', $post->description) }}" class="w-full h-60 text-2xl rounded-lg shadow-lg border-b p-10 mb-5"placeholder="Description"  id="" cols="30" rows="10"></textarea>
 
             <div class="py-15">
                 <label for="image" class="
@@ -40,7 +40,7 @@
                 cursor-pointer
                 p-5 rounded-lg
                 font-bold uppercase
-                ">Add</button>
+                ">Edit</button>
         </form>
 
 
